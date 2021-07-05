@@ -1,0 +1,273 @@
+{
+  "intents": [
+    {
+      "intent": "bye",
+      "examples": [
+        {
+          "text": "bye"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "ok bye"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "explain",
+      "examples": [
+        {
+          "text": "yes"
+        },
+        {
+          "text": "Yes excited"
+        },
+        {
+          "text": "Yes I'm ready"
+        },
+        {
+          "text": "Yes ready"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "notwant",
+      "examples": [
+        {
+          "text": "I do not want"
+        },
+        {
+          "text": "No"
+        },
+        {
+          "text": "not"
+        },
+        {
+          "text": "no thanks"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "thank",
+      "examples": [
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "thank you so much"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "welcome",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "You are welcome"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هاي"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1625508782555",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You are welcome .."
+              },
+              {
+                "text": "Welcome .."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#thank",
+      "dialog_node": "node_10_1625508521444",
+      "previous_sibling": "node_9_1625508012475"
+    },
+    {
+      "type": "standard",
+      "title": "bye",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Bye :)"
+              },
+              {
+                "text": "Good Bye ... nice to meet you :)"
+              },
+              {
+                "text": "Good Bye nice day you :)"
+              },
+              {
+                "text": "BYE :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "Welcome"
+      },
+      "conditions": "#bye",
+      "dialog_node": "node_10_1625508782555",
+      "previous_sibling": "node_10_1625508521444"
+    },
+    {
+      "type": "standard",
+      "title": "explain",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Let's get learn the interface of the robotic arm control panel,\nit is simply 6 motors to move the robotic arm according to the angle we want, and there are two save and run buttons..\n- Save button to save the data to the database.\n- Run button to operate the robot arm."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#explain",
+      "dialog_node": "node_1_1625506353145",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "No need",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Oh no, bye :("
+              },
+              {
+                "text": "Bye Bye :("
+              },
+              {
+                "text": "It's okay bye :("
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#notwant",
+      "dialog_node": "node_9_1625508012475",
+      "previous_sibling": "node_1_1625506353145"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, I'm here ready to help you explain arm control page!!\nwhich was created by Eng. Hatoun AlJuaid..\nNow are you ready for that?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Talk",
+  "language": "en",
+  "description": ""
+}
